@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>Edit Task</title>
+  {% include "core/shared_links.html" %}
+</head>
+<body>
+  {% include "core/navbar.html" %}
+  <div class="container">
+    <div class = "jumbotron">
+      <h1>Edit Task</h1>
+      <form action="/tasks/" method="POST">
+        {% csrf_token %}
+		{{ forms.Ids }}
+		<table class="table table-hover table-dark">
+		  <tbody>
+			<tr>
+			  <th scope="row">Description</th>
+			  <td>{{  forms.Description }}</td>
+			</tr>
+			<tr>
+			  <th scope="row">Category</th>
+			  <td>{{  forms.Category }}</td>
+			  
+			</tr>
+			<tr>
+			  <th scope="row">Completed</th>
+			  <td>{{  forms.is_completed }}</td>
+			 
+			</tr>
+		  </tbody>
+		</table>
+		<table>
+		<tr><td style="padding-left:10px;"><input type="submit" name="u_task" class="btn btn-success" value = "Update Task"/>
+	 </form>
+		</td><td>
+	 <form method="get">{% csrf_token %}
+		 <a href = "javascript:window.history.back()" class="btn btn-secondary"> Cancel</a>
+		
+		</td>
+		</tr>
+		</table>
+	 </form>
+    </div>
+  </div>
+</body>
+</html>

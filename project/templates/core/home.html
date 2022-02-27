@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>Dashboard</title>
+  {% load static %}
+  {% include "core/shared_links.html" %}
+</head>
+<body>
+  {% include "core/navbar.html" %}
+  <h1>Dashboard</h1>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm">
+                    <div class="span2">
+                        <h3>Tasks<h3>
+                            <div class="ct-perfect-fourth" id="chart1"></div>
+
+
+<script>
+    var data = {
+    labels: ['Completed', 'Pending'],
+    series: [
+        //Python code coming from views.py to display the completed and pending task numbers
+        {{ completed }}, {{ pending }}
+        ]
+    };
+
+    var options = {
+    labelInterpolationFnc: function(value) {
+        return value[0]
+    }
+    };
+
+    var responsiveOptions = [
+    ['screen and (min-width: 840px)', {
+        chartPadding: 30,
+        labelOffset: 40,
+        labelDirection: 'explode',
+        labelInterpolationFnc: function(value) {
+        return value;
+        }
+    }],
+    ['screen and (min-width: 1360px)', {
+        labelOffset: 57,
+        chartPadding: 20
+    }]
+    ];
+    var mychart = new Chartist.Pie('#chart1', data, options, responsiveOptions);
+</script>
+        <form>
+            <a href="{%url 'tasks'%}">
+                <input type="button" action="/view_tasks_list/"class="btn btn-primary"  value = "Tasks"/>
+            </a>
+        </form>
+                    </div>
+                </div>
+
+
+
+<div class="col-sm">
+  <div class="span2">
+      <h3>Budget<h3>
+          <div class="ct-perfect-fourth" id="chart2"></div>
+          <script>
+              var data = {
+                  series: [
+                      [
+                          {% for row in budget_list%}
+                              {{row.actual}},
+                          {% endfor %}
+                      ],
+                      [
+                          {% for row in budget_list%}
+                              {{row.projected}},
+                          {% endfor %}
+                      ]
+                  ]
+              };
+              var options = {
+                  seriesBarDistance: 10
+              };
+              var responsiveOptions = [
+                  ['screen and (max-width: 1360x)', {
+                  seriesBarDistance: 5,
+                      axisX: {
+                      labelInterpolationFnc: function (value) {
+                          return value[0];
+                      }
+                  }
+              }
+              ]
+              ];
+
+              new Chartist.Bar('#chart2', data, options, responsiveOptions);
+          </script>
+          <form>
+              <a href="{%url 'budget'%}">
+                  <input type="button" action="/view_budget_list/"class="btn btn-primary"  value = "Budget"/>
+              </a>
+          </form>
+  </div>
+</div>
+
+</body>
+</html>

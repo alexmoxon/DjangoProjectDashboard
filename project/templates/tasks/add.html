@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>Add New Task</title>
+  {% include "core/shared_links.html" %}
+</head>
+<body>
+  {% include "core/navbar.html" %}
+  <div class="jumbotron">
+    <h1>Add New Task</h1>
+    <form method="POST">
+      {% csrf_token %}
+      <table>
+        {{ form_data.as_table }}
+      </table>
+      <a href="/tasks/" class="btn btn-secondary">Cancel</a>
+      <input type="submit" class="btn btn-primary" name="add" value = "Add Task">
+    </form>
+  </div>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>About</title>
+    {% include "core/shared_links.html" %}
+  </head>
+  <body>
+    {% include "core/navbar.html" %}
+    {%load static %}
+  
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+.row {
+    display: block;
+    margin-left: 200px;
+    margin-right: 200px;
+    align-content: center;
+}
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    width:65%;
+}
+
+.column {
+    width: 100%;
+    margin-bottom: 16px;
+    padding: 0 8px;
+    align-content: center;
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin-top: 8px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 8px;
+    width: 50%;
+
+    text-align: center;
+    align-content: center;
+
+}
+
+.about-section {
+  padding: 10px;
+  text-align: center;
+  background-color: white;
+  color: black;
+}
+
+.container {
+  padding: 16px 16px;
+}
+
+.container::after, .row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.title {
+  color: #474e5d;
+}
+
+.button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #474e5d;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+}
+
+.button:hover {
+  background-color: white;
+}
+p {
+    text-align: center;
+}
+@media screen and (max-width: 1360px) {
+  .column {
+      width: 100%;
+      display: block;
+
+  }
+}
+</style>
+<body>
+  
+<div class="about-section">
+    <h1>About Me & Site Functionality</h1>
+    <p></p>
+    <h4 style="text-align:center">~ CINS 465 Project 1 ~</h4>
+</div>
+
+<div class="row">
+  <div class="column">
+    <div class="card">
+      
+	  <img src={%  static "machu.jpg" %} alt="Alex-Moxon" class="center">
+      
+	  <div class="container">
+          <h2>Alex Moxon</h2>
+        <p class="title">CSU Chico ~ Computer Science Major</p>
+        <p class="title">amoxon@mail.csuchico.edu</p>
+        <p>
+            <a href="https://paramox.io/" class="button" target ="_blank">Check Out My Site!</a>
+      </div>
+	  
+    </div>
+  </div>
+  <div>
+      <p></p>
+      <p><b><u>About Me</u></b></p>
+      <p>Hi, my name is Alex Moxon and welcome to my CINS 465 Final Project!</p>
+      <p>I'm currently a senior at CSU Chico, studying Computer Science!</p>
+      <p>Besides programming ~ I also enjoy spending my time gardening,</p>
+      <p>along with riding my bike through beautiful Bidwell Park!</p>
+
+      <p></p>
+      <p><b><u>How I Built The Site:</u></b></p>
+      <p>Firstly I started with getting requirement sspecification of the project.</p>
+      <p>i Then started with creating Django project1 and with Applications including core, tasks, budget, journal etc.</p>
+      <p>Then I started with creating models</p>
+      <p>I realized this applcation i have to make in parts such as login and authentication, tasks after tasks budget and journal were just replication of the work<p>
+      <p>I made a login page and started working on tasks..here the real work starts right from creating database till making UI for it<p>
+      <p>I started off with creating add task button on which I can add task and then display it on the task home page<p>
+      <p>then i made display of the added tasks in the format specified<p>
+      <p>i started working on edit and delete options, edit was quite a challenging as I struggled removing content from the database.<p>
+      <p>I fixed this problem by realizing you need to first see if the data is available on the server & go from there.</p>
+  </div>
+</div>
+ 
+
+</body>
+</html>

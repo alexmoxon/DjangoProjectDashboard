@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>Budget</title>
+  {% include "core/shared_links.html" %}
+</head>
+<body>
+  {% include "core/navbar.html" %}
+  
+  <div class="container">
+    <div class = "jumbotron">
+      <h1>Budget</h1>
+      
+	  <form action="/view_budget_list/" method="POST">
+        {{ login_form.as_p }}
+        {% csrf_token %}
+
+		<table class="table table-hover table-dark">
+        <tr>
+        <th>Desription</th>
+        
+        <th>Category</th>
+
+		<th>Projected</th>
+
+    <th>Actual</th>
+    
+		<th>Edit</th>
+
+		<th>Delete</th>
+	</tr>
+    {% for budget in allbudget%}
+    <tr> 
+		
+		<td> {{budget.description}}</td>
+        <td>{{budget.category}}</td>
+		<td>{{budget.projected}}</td>
+      <td>{{budget.actual}}</td>
+		
+	
+		<td>
+		<form action="/edit_budget/{{budget.id}}" method="POST"> 
+        {{ editbudget.as_p }}
+        {% csrf_token %}
+		 <a href="{%url 'edit_budget'%}?e_id={{budget.id}}">
+        <input type="button" action="/edit_budget/"class="btn btn-info"  value = "Edit"/>
+	 </form>
+	 </td>
+	 <td>
+        
+		 
+        <input type="button" class="btn btn-danger" data-toggle="modal" data-target ="#deleteModel{{ budget.id }}" value = "Delete"/>
+	 </td>
+    </tr>
+	{% include 'budget/delete_budget.html' %}
+    {% endfor %}
+	</table>
+  <table>
+		<tr><td>
+		</form>
+		<form action="/add_budget/" method="POST">
+		{% csrf_token %}
+        <input type="submit" class="btn btn-success" value = "Add Budget"/>
+	    </form>
+		</td><td style="color:black">
+		{% if the_final_value >= 0 %}
+		 There is a projected budget surplus of ${{ the_final_value }}
+		{% else %}
+			There is a projected budget deficit of ${{ the_final_value }}
+		{% endif %}
+		</td></tr>
+  </table>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<div class="jumbotron">
+  <div align="center">
+    <h2>Tasks</h2>
+    {% if tasks_db_completed or tasks_db_pending %}
+    <div class="ct-chart ct-perfect-fourth"></div>
+    <form action="\tasks\">
+      <input type="submit" class="btn btn-primary" value = "Tasks" />
+    </form>
+    <!--chart definition-->
+    <script>
+      new Chartist.Pie('.ct-chart',
+      { labels: ['Completed', 'Pending'], series: [{{ tasks_db_completed }}, {{ tasks_db_pending }}] },
+      { labelInterpolationFnc: function(value) { return value[0] } },
+      [['screen', { chartPadding: 20, labelOffset: 60, labelDirection: 'explode',
+      labelInterpolationFnc: function(value) { return value;}}]]);
+    </script>
+    {% else %}
+    <h4>There are no tasks defined.</h4>
+    {% endif %}
+  </div>
+</div>

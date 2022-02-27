@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<style>
+table {
+	border: 2px, solid black;
+	border-collapse:collapse;
+	align-self:center;
+}
+</style>
+
+  <meta charset="utf-8">
+  <title>Edit Task</title>
+  <!--bootstrap includes-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+  {% load static %}
+  <link rel="stylesheet" href="{%static 'CSS/project1.css' %}" />
+  <script src="{%static 'JS/project1.js' %}"></script>
+
+</head>
+<body>
+  {% include "core/navbar.html" %}
+  <div class="container">
+    <div class = "jumbotron">
+      <h1>Edit Budget</h1>
+      <form action="/budget/" method="POST">
+        {% csrf_token %}
+		{{ forms.Ids }}
+		<table class="table table-hover table-dark">
+		  <tbody>
+			<tr>
+			  <th scope="row">Description</th>
+			  <td>{{  forms.Description }}</td>
+			</tr>
+			<tr>
+			  <th scope="row">Category</th>
+			  <td>{{  forms.Category }}</td>
+			  
+			</tr>
+			<tr>
+			  <th scope="row">Projected</th>
+			  <td>{{  forms.Projected }}</td>
+			 
+			</tr>
+			<tr>
+			  <th scope="row">Actual</th>
+			  <td>{{  forms.Actual }}</td>
+			 
+			</tr>
+		  </tbody>
+		</table>
+		<table>
+		<tr><td style="padding-left:10px;"><input type="submit" name="u_task" class="btn btn-primary" value = "Update Budget"/>
+	 </form>
+		</td><td>
+	 <form method="get">{% csrf_token %}
+		<a href = "javascript:window.history.back()" class="btn btn-secondary"> Cancel</a>
+		</td>
+		</tr>
+		</table>
+	 </form>
+    </div>
+  </div>
+</body>
+</html>
+	
